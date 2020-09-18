@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+		 layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Entreprises</title>
+</head>
+<body>
+   <div layout:fragment="content" class="container">
+ 		
+ 			<div class="panel panel-primary">
+ 			  <div class="panel-heading">Liste des Entreprises</div>
+ 			   <div class="panel-body">
+ 			         <div class="container">
+ 			           <form th:action="@{/taxes}" method="get" id="myForm">
+ 			             <label>Entreprises:</label>
+ 			              <select name="code" onchange="document.getElementById('myForm').submit()">
+ 			               <option th:each="e:${entreprises}"
+ 			               th:value="${e.code}"
+ 			                th:text="${e.nom}"></option>
+ 			              </select>
+ 			             <button type="submit" class="btn btn-primary">Chercher</button>
+ 			           </form>
+ 			         </div>
+ 			         <p></p>
+		             <table class="table table-striped">
+		 		      <tr> 
+		 		      	<th>ID</th><th>Titre</th><th>Date</th><th>Montant</th><th>Type</th>
+		 		      </tr>
+		 		      <tr th:each="t:${taxes}"> 
+		 		      	<td th:text="${t.id}"></td>
+		 		      	<td th:text="${t.titre}"></td>
+		 		      	<td th:text="${t.dateTaxe}"></td>
+		 		      	<td th:text="${t.montant}"></td>    
+		 		      	<td th:text="${t.class.simpleName}"></td> 
+		 		
+		 		      </tr>
+		 				
+		 		   	</table>
+		 		   	<div>
+			 		   	 <ul class="nav nav-pills">
+			 		   	   <li th:class="${status.index==pageCourante}?'active':''" th:each="p,status:${pages}">
+			 		   	     <a th:href="@{/entreprises(page=${status.index},motCle=${motCle})}" th:text="${status.index}"></a>
+			 		   	   </li>
+			 		   	 </ul>
+		 		   	
+		 		   	</div>
+
+					</div>
+ 			</div>
+   </div>
+</body>
+</html>

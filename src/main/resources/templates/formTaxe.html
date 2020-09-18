@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+		 layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Taxes</title>
+</head>
+<body>
+   <div layout:fragment="content" class="container">
+ 		 <div class="col-md-6">
+ 			<div class="panel panel-primary">
+ 			  <div class="panel-heading">Ajout d'une Taxe</div>
+ 			   <div class="panel-body">
+ 			      <form th:action="@{/saveTaxe}" method="post">
+ 			        	
+ 			          <div class="form-group">
+                           <label class="control-label" >Type: </label>
+                            <input class="form-control" type="text" name="type" th:placeholder="TVA_ou_IR " />
+                           
+                       </div>
+ 			        	
+                       <div class="form-group">
+                           <label class="control-label" >Titre:</label>
+                            <input class="form-control" type="text" name="titre" />
+                           
+                       </div>	
+                        <div class="form-group">
+                           <label class="control-label" >Montant:</label>
+                            <input class="form-control" type="text" name="montant" />
+                          
+                       </div>	
+                       <button class="btn btn-primary">Save</button>	       
+ 			      </form>
+
+			   </div>
+			   </div>
+ 			</div>
+   </div>
+</body>
+</html>
